@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [[ -f $1/config.yaml || -f $1/config.toml || -f $1/config.json ]]; then
+    echo "Hugo"
+    exit 0
+fi
+
+exit 1
