@@ -46,4 +46,4 @@ if [ -e $BUILD_DIR/.hugotheme ]; then
 echo "\n-----> Building the site"
 cd $BUILD_DIR
 mkdir -p static | indent
-HUGO_BASEURL=http://$(cat ${3}/HOSTNAME)/ HUGO_GOOGLEANALYTICS=$(cat ${3}/ANALYTICS) ./hugo -d src/main/resources/static | indent
+HUGO_BASEURL=https://$(cat ${3}/HOSTNAME)/ HUGO_GOOGLEANALYTICS=$(cat ${3}/ANALYTICS) ./hugo -d src/main/resources/static | indent
