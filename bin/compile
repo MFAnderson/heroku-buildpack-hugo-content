@@ -32,9 +32,7 @@ fi
 echo "\n-----> Extracting Hugo ${VERSION} binaries to ${CACHE_DIR}/vendor/hugo"
 mkdir -p $CACHE_DIR/$EXECUTABLE_NAME | indent
 tar -zxvf $CACHE_DIR/$FILE_NAME -C $CACHE_DIR | indent
-ls -la $CACHE_DIR | indent
-ls -la $CACHE_DIR/$EXECUTABLE_NAME | indent
-mv $CACHE_DIR/$EXECUTABLE_NAME/hugo $BUILD_DIR/hugo | indent
+mv $CACHE_DIR/hugo $BUILD_DIR/hugo | indent
 
 
 # Build the site
