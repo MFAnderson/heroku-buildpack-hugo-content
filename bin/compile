@@ -23,10 +23,12 @@ HUGO_PACKAGE=https://github.com/spf13/hugo/releases/download/v${VERSION}/${FILE_
 
 # Store the hugo package in the cache_dir ( persistent across builds )
 mkdir -p $CACHE_DIR
+echo $CACHE_DIR/$FILE_NAME | indent
+ls $CACHE_DIR | indent
 if ! [ -e $CACHE_DIR/$FILE_NAME ]; then
-      echo "\n-----> Fetching Hugo ${VERSION} binaries at ${HUGO_PACKAGE}"
-        curl $HUGO_PACKAGE -L -s -o $CACHE_DIR/$FILE_NAME | indent
-        fi
+    echo "\n-----> Fetching Hugo ${VERSION} binaries at ${HUGO_PACKAGE}"
+    curl $HUGO_PACKAGE -L -s -o $CACHE_DIR/$FILE_NAME | indent
+fi
 
 # Extract the binary in the working directory
 echo "\n-----> Extracting Hugo ${VERSION} binaries to ${BUILD_DIR}/vendor/hugo"
@@ -34,13 +36,6 @@ mkdir -p $CACHE_DIR/$EXECUTABLE_NAME | indent
 tar -zxvf $CACHE_DIR/$FILE_NAME -C $CACHE_DIR | indent
 mv $CACHE_DIR/$EXECUTABLE_NAME/$EXECUTABLE_NAME $BUILD_DIR/hugo | indent
 
-# Fetch a theme specified in the .hugotheme file
-if [ -e $BUILD_DIR/.hugotheme ]; then
-      echo "\n-----> Getting the theme"
-        THEME_URL="`cat $BUILD_DIR/.hugotheme`"
-          rm -rf $BUILD_DIR/themes && mkdir $BUILD_DIR/themes && cd $BUILD_DIR/themes
-            git clone $THEME_URL
-            fi
 
 # Build the site
 echo "\n-----> Building the site"
