@@ -31,10 +31,10 @@ if ! [ -e $CACHE_DIR/$FILE_NAME ]; then
 fi
 
 # Extract the binary in the working directory
-echo "\n-----> Extracting Hugo ${VERSION} binaries to ${BUILD_DIR}/vendor/hugo"
+echo "\n-----> Extracting Hugo ${VERSION} binaries to ${CACHE_DIR}/vendor/hugo"
 mkdir -p $CACHE_DIR/$EXECUTABLE_NAME | indent
 tar -zxvf $CACHE_DIR/$FILE_NAME -C $CACHE_DIR | indent
-mv $CACHE_DIR/$EXECUTABLE_NAME/$EXECUTABLE_NAME $BUILD_DIR/hugo | indent
+mv $CACHE_DIR/$EXECUTABLE_NAME/hugo $BUILD_DIR/hugo | indent
 
 
 # Build the site
