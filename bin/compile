@@ -37,6 +37,8 @@ mv $CACHE_DIR/hugo $BUILD_DIR/hugo | indent
 
 # Build the site
 echo "\n-----> Building the site"
+echo $BUILD_DIR
 cd $BUILD_DIR/infosite
+pwd
 mkdir -p static | indent
 HUGO_BASEURL=https://$(cat ${3}/HOSTNAME)/ HUGO_GOOGLEANALYTICS=$(cat ${3}/ANALYTICS) ./hugo -d ../src/main/resources/static | indent
