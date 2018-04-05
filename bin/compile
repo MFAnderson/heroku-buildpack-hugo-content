@@ -32,13 +32,11 @@ fi
 echo "\n-----> Extracting Hugo ${VERSION} binaries to ${CACHE_DIR}/vendor/hugo"
 mkdir -p $CACHE_DIR/$EXECUTABLE_NAME | indent
 tar -zxvf $CACHE_DIR/$FILE_NAME -C $CACHE_DIR | indent
-mv $CACHE_DIR/hugo $BUILD_DIR/hugo | indent
+mv $CACHE_DIR/hugo $BUILD_DIR/infosite/hugo | indent
 
 
 # Build the site
 echo "\n-----> Building the site"
-echo $BUILD_DIR
 cd $BUILD_DIR/infosite
-pwd
 mkdir -p static | indent
 HUGO_BASEURL=https://$(cat ${3}/HOSTNAME)/ HUGO_GOOGLEANALYTICS=$(cat ${3}/ANALYTICS) ./hugo -d ../src/main/resources/static | indent
