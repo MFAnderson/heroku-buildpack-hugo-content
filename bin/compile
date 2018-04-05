@@ -46,4 +46,4 @@ mv $BUILD_DIR/infosite/hugo $BUILD_DIR/newinfosite/hugo | indent
 echo "\n-----> Building the newinfosite"
 cd $BUILD_DIR/newinfosite
 mkdir -p static | indent
-HUGO_BASEURL=https://$(cat ${3}/HOSTNAME)/newinfosite/ HUGO_GOOGLEANALYTICS=$(cat ${3}/ANALYTICS) ./hugo -d ../src/main/resources/static/newinfosite | indent
+HUGO_BASEURL=https://$(cat ${3}/HOSTNAME)/newinfosite/ HUGO_GOOGLEANALYTICS=$(cat ${3}/NEWINFOSITE_ANALYTICS) ./hugo -d ../src/main/resources/static/newinfosite | indent
