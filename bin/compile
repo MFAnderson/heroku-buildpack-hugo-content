@@ -35,8 +35,15 @@ tar -zxvf $CACHE_DIR/$FILE_NAME -C $CACHE_DIR | indent
 mv $CACHE_DIR/hugo $BUILD_DIR/infosite/hugo | indent
 
 
-# Build the site
-echo "\n-----> Building the site"
+# Build infosite
+echo "\n-----> Building the infosite"
 cd $BUILD_DIR/infosite
 mkdir -p static | indent
 HUGO_BASEURL=https://$(cat ${3}/HOSTNAME)/ HUGO_GOOGLEANALYTICS=$(cat ${3}/ANALYTICS) ./hugo -d ../src/main/resources/static | indent
+
+# Build newinfosite
+mv $BUILD_DIR/infosite/hugo $BUILD_DIR/newinfosite/hugo | indent
+echo "\n-----> Building the newinfosite"
+cd $BUILD_DIR/newinfosite
+mkdir -p static | indent
+HUGO_BASEURL=https://$(cat ${3}/HOSTNAME)/newinfosite/ HUGO_GOOGLEANALYTICS=$(cat ${3}/ANALYTICS) ./hugo -d ../src/main/resources/static/newinfosite | indent
