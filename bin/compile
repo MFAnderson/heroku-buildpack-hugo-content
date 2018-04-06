@@ -40,9 +40,9 @@ cd $BUILD_DIR/infosite
 mkdir -p static | indent
 HUGO_BASEURL=https://$(cat ${3}/HOSTNAME)/ HUGO_GOOGLEANALYTICS=$(cat ${3}/ANALYTICS) ./hugo -d ../src/main/resources/static | indent
 
-# Build newinfosite
-mv $BUILD_DIR/infosite/hugo $BUILD_DIR/newinfosite/hugo | indent
-echo "\n-----> Building the newinfosite"
-cd $BUILD_DIR/newinfosite
-rm -rf ../src/main/resources/static/newinfosite/
-HUGO_BASEURL=https://$(cat ${3}/HOSTNAME)/newinfosite/ HUGO_GOOGLEANALYTICS=$(cat ${3}/NEWINFOSITE_ANALYTICS) ./hugo -d ../src/main/resources/static/newinfosite | indent
+# Build knowledge base site
+mv $BUILD_DIR/infosite/hugo $BUILD_DIR/knowledge-base/hugo | indent
+echo "\n-----> Building the knowledge-base"
+cd $BUILD_DIR/knowledge-base
+rm -rf ../src/main/resources/static/knowledge-base/
+HUGO_BASEURL=https://$(cat ${3}/HOSTNAME)/knowledge-base/ HUGO_GOOGLEANALYTICS=$(cat ${3}/NEWINFOSITE_ANALYTICS) ./hugo -d ../src/main/resources/static/knowledge-base | indent
