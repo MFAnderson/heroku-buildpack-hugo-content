@@ -34,7 +34,6 @@ mkdir -p $CACHE_DIR/$EXECUTABLE_NAME | indent
 tar -zxvf $CACHE_DIR/$FILE_NAME -C $CACHE_DIR | indent
 mv $CACHE_DIR/hugo $BUILD_DIR/infosite/hugo | indent
 
-
 # Build infosite
 echo "\n-----> Building the infosite"
 cd $BUILD_DIR/infosite
@@ -45,5 +44,5 @@ HUGO_BASEURL=https://$(cat ${3}/HOSTNAME)/ HUGO_GOOGLEANALYTICS=$(cat ${3}/ANALY
 mv $BUILD_DIR/infosite/hugo $BUILD_DIR/newinfosite/hugo | indent
 echo "\n-----> Building the newinfosite"
 cd $BUILD_DIR/newinfosite
-mkdir -p static | indent
+rm -rf ../src/main/resources/static/newinfosite/
 HUGO_BASEURL=https://$(cat ${3}/HOSTNAME)/newinfosite/ HUGO_GOOGLEANALYTICS=$(cat ${3}/NEWINFOSITE_ANALYTICS) ./hugo -d ../src/main/resources/static/newinfosite | indent
