@@ -12,37 +12,8 @@ indent() {
 BUILD_DIR=$1
 CACHE_DIR=$2
 
-# Hugo version
-VERSION="0.25.1"
-
-# Hugo URL ( download from GH builds )
-ARCHIVE_NAME=hugo_${VERSION}_Linux-64bit
-FILE_NAME=${ARCHIVE_NAME}.tar.gz
-EXECUTABLE_NAME=hugo_${VERSION}_linux_amd64
-HUGO_PACKAGE=https://github.com/spf13/hugo/releases/download/v${VERSION}/${FILE_NAME}
-
-# Store the hugo package in the cache_dir ( persistent across builds )
-mkdir -p $CACHE_DIR
-if ! [ -e $CACHE_DIR/$FILE_NAME ]; then
-    echo "\n-----> Fetching Hugo ${VERSION} binaries at ${HUGO_PACKAGE}"
-    curl $HUGO_PACKAGE -L -s -o $CACHE_DIR/$FILE_NAME | indent
-fi
-
-# Extract the binary in the working directory
-echo "\n-----> Extracting Hugo ${VERSION} binaries to ${CACHE_DIR}/vendor/hugo"
-mkdir -p $CACHE_DIR/$EXECUTABLE_NAME | indent
-tar -zxvf $CACHE_DIR/$FILE_NAME -C $CACHE_DIR | indent
-mv $CACHE_DIR/hugo $BUILD_DIR/infosite/hugo | indent
-
-# Build infosite
-echo "\n-----> Building the infosite"
-cd $BUILD_DIR/infosite
-mkdir -p static | indent
-HUGO_BASEURL=https://$(cat ${3}/HOSTNAME)/ HUGO_GOOGLEANALYTICS=$(cat ${3}/ANALYTICS) ./hugo -d ../src/main/resources/static | indent
-
-# Build knowledge base site
-mv $BUILD_DIR/infosite/hugo $BUILD_DIR/knowledge-base/hugo | indent
-echo "\n-----> Building the knowledge-base"
-cd $BUILD_DIR/knowledge-base
-rm -rf ../src/main/resources/static/knowledge-base/
-HUGO_BASEURL=https://$(cat ${3}/HOSTNAME)/knowledge-base/ HUGO_GOOGLEANALYTICS=$(cat ${3}/NEWINFOSITE_ANALYTICS) ./hugo -d ../src/main/resources/static/knowledge-base | indent
+# Create the PMM
+echo "\n-----> Building the PMM"
+cd $BUILD_DIR/platform-maturity-model/_static-site-generator/
+npm install -g sass
+npm install
