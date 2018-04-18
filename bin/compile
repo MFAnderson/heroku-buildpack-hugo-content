@@ -46,3 +46,8 @@ echo "\n-----> Building the knowledge-base"
 cd $BUILD_DIR/knowledge-base
 rm -rf ../src/main/resources/static/knowledge-base/
 HUGO_BASEURL=https://$(cat ${3}/HOSTNAME)/knowledge-base/ HUGO_GOOGLEANALYTICS=$(cat ${3}/NEWINFOSITE_ANALYTICS) ./hugo -d ../src/main/resources/static/knowledge-base | indent
+
+# Setup academy
+cd $BUILD_DIR/academy
+mkdir -p ../src/main/resources/static/academy/
+cp -r docs/* ../src/main/resources/static/academy/
