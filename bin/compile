@@ -34,13 +34,13 @@ mkdir -p $CACHE_DIR/$EXECUTABLE_NAME | indent
 tar -zxvf $CACHE_DIR/$FILE_NAME -C $CACHE_DIR | indent
 mv $CACHE_DIR/hugo $BUILD_DIR/infosite/hugo | indent
 
-# Build infosite
+# Setup infosite
 echo "\n-----> Building the infosite"
 cd $BUILD_DIR/infosite
 mkdir -p static | indent
 HUGO_BASEURL=https://$(cat ${3}/HOSTNAME)/ HUGO_GOOGLEANALYTICS=$(cat ${3}/ANALYTICS) ./hugo -d ../src/main/resources/static | indent
 
-# Build knowledge base site
+# Setup knowledge-base
 mv $BUILD_DIR/infosite/hugo $BUILD_DIR/knowledge-base/hugo | indent
 echo "\n-----> Building the knowledge-base"
 cd $BUILD_DIR/knowledge-base
@@ -48,6 +48,7 @@ rm -rf ../src/main/resources/static/knowledge-base/
 HUGO_BASEURL=https://$(cat ${3}/HOSTNAME)/knowledge-base/ HUGO_GOOGLEANALYTICS=$(cat ${3}/NEWINFOSITE_ANALYTICS) ./hugo -d ../src/main/resources/static/knowledge-base | indent
 
 # Setup academy
+echo "\n-----> Building the academy"
 cd $BUILD_DIR/academy
 mkdir -p ../src/main/resources/static/academy/
-cp -r docs/* ../src/main/resources/static/academy/
+cp -r public/* ../src/main/resources/static/academy/
